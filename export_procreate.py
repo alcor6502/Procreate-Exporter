@@ -7,7 +7,7 @@
 # Licensed under the MIT License.
 # See LICENSE.md for full license text.
 
-# Version: 2.1
+# Version: 2.2
 # Author: Alfredo Cortellini
 
 # Overall Description:
@@ -29,10 +29,6 @@ import datetime
 import plistlib
 import zipfile
 import subprocess
-import glob  # For matching files with pattern
-import lzo
-import lz4.block
-import struct
 import shutil
 
 if shutil.which("SetFile") is None:
