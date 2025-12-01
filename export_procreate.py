@@ -7,7 +7,7 @@
 # Licensed under the MIT License.
 # See LICENSE.md for full license text.
 
-# Version: 2.2
+# Version: 2.3
 # Author: Alfredo Cortellini
 
 # Overall Description:
@@ -152,7 +152,7 @@ def process_folder(folder_path: str, timestamp: str) -> str:
     return new_name
 
 
-def make_procreate_file(dir_path: str, name_file: str, date_file: datetime.datetime) -> None:
+def make_procreate_file(dir_path: str, name_file: str, create_date: datetime.datetime, mod_date: datetime.datetime) -> None:
     # Creates a .procreate file by zipping the contents of the directory and sets the file's creation and modification dates.
 
     # Input Parameters:
@@ -180,12 +180,14 @@ def make_procreate_file(dir_path: str, name_file: str, date_file: datetime.datet
                 z.write(full_path_zip, rel_path_zip)
 
     # Associate the original timestamp of the folder to the .procreate file
+
     # Format the date for SetFile (MM/DD/YYYY HH:MM:SS)
-    date_str = date_file.strftime("%m/%d/%Y %H:%M:%S")
+    create_date_str = create_date.strftime("%m/%d/%Y %H:%M:%S")
+    mod_date_str = mod_date.strftime("%m/%d/%Y %H:%M:%S")
 
     # Change creation date (-d) and modification date (-m) with SetFile
-    subprocess.run(["SetFile", "-d", date_str, output_file], check=False)
-    subprocess.run(["SetFile", "-m", date_str, output_file], check=False)
+    subprocess.run(["SetFile", "-d", create_date_str, output_file], check=False)
+    subprocess.run(["SetFile", "-m", mod_date_str, output_file], check=False)
 
     return
 
@@ -211,21 +213,29 @@ def main():
     for entry in os.listdir(base_dir):
         full_path = os.path.join(base_dir, entry)
 
-        if check_folder(full_path):
-            print(f"\nProcess folder: {entry}")
-            # Timestamp from the folder creation date
-            stat_full_path = os.stat(full_path)
-            creation_date = datetime.datetime.fromtimestamp(stat_full_path.st_birthtime)
+        if not check_folder(full_path):
+            continue
 
-            # Update name of the file with a time stamp
-            procreate_name = process_folder(full_path, make_timestamp(creation_date))
-            
-            # Check if the name has been updated correctly otherwise skip .procreate file creation
-            if not procreate_name:
-                continue
+        print(f"\nProcess folder: {entry}")
 
-            # Transform the folder in a procreate file
-            make_procreate_file(full_path, procreate_name, creation_date)
+        # Creation date from the folder creation date
+        stat_full_path = os.stat(full_path)
+        creation_date = datetime.datetime.fromtimestamp(os.stat(full_path).st_birthtime)
+        
+        # Modification date from Document.archive modification date
+        doc_path = os.path.join(full_path, "QuickLook", "Thumbnail.png")
+        stat_doc_path = os.stat(doc_path)
+        modification_date = datetime.datetime.fromtimestamp(stat_doc_path.st_mtime)
+
+        # Update name of the file with a time stamp
+        procreate_name = process_folder(full_path, make_timestamp(creation_date))
+        
+        # Check if the name has been updated correctly otherwise skip .procreate file creation
+        if not procreate_name:
+            continue
+
+        # Transform the folder in a procreate file
+        make_procreate_file(full_path, procreate_name, creation_date, modification_date)
             
     print("\nFinished.")
 
