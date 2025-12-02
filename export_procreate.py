@@ -30,6 +30,7 @@ import plistlib
 import zipfile
 import subprocess
 import shutil
+import re
 
 if shutil.which("SetFile") is None:
     print("\n WARNING: 'SetFile' is not installed on this Mac.")
@@ -38,6 +39,16 @@ if shutil.which("SetFile") is None:
     print("      xcode-select --install")
     print("   Or browse:")
     print("   https://developer.apple.com/download/all/?q=command%20line%20tools\n")
+
+
+def sanitize_filename(name: str, replacement: str = "_") -> str:
+    """
+    Convert a string into a filesystem-safe filename.
+    """
+    # Characters not allowed (or dangerous) on macOS/Linux/Windows
+    # Includes slash, control chars, etc.
+    return re.sub(r'[\/:*?"<>|\n\r\t]', replacement, name).strip()
+
 
 def check_folder(dir_path: str) -> bool:
     # Checks if the given path is a valid directory containing a 'Document.archive' file.
@@ -162,9 +173,14 @@ def make_procreate_file(dir_path: str, name_file: str, create_date: datetime.dat
 
     # Output:
     # - None (creates the file on disk).
+    
+    # Sanitize Filename
+    safe_name = sanitize_filename(name_file)
 
-    # Set the .procreate file name
-    output_file = os.path.join(os.path.dirname(dir_path), name_file) + ".procreate"
+    if safe_name != name_file:
+        print(f"  Sanitized filename:\n    '{name_file}'\n → '{safe_name}'")
+
+    output_file = os.path.join(os.path.dirname(dir_path), f"{safe_name}.procreate")
 
     # Create the zip (.procreate is a zip)
     with zipfile.ZipFile(output_file, 'w', zipfile.ZIP_DEFLATED) as z:
