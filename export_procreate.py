@@ -30,6 +30,8 @@ import plistlib
 import zipfile
 import subprocess
 import shutil
+import re
+import unicodedata
 
 if shutil.which("SetFile") is None:
     print("\n WARNING: 'SetFile' is not installed on this Mac.")
@@ -125,6 +127,10 @@ def process_folder(folder_path: str, timestamp: str) -> str:
     # Name is present and strip spaces in front and at the end
 
     old_name = objects[name_uid.data].strip()
+    old_name = unicodedata.normalize("NFKD", old_name).encode("ascii", "ignore").decode()
+    old_name = re.sub(r'[^\w\-. ]+', ' ', old_name)
+    old_name = re.sub(r'\s{2,}', ' ', old_name)
+    old_name = old_name.strip('-. ')
 
     if not isinstance(old_name, str):
         print("************* The existing name is not a string → Force the type *************")
