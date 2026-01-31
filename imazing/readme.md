@@ -105,14 +105,14 @@ Python script finished running successfully.
 ## Step 15 – Select All
 ![Step 14](./14-select-all.png)
 
-Select all relevant files or folders.
+Select all relevant files or folders -> CTRL+CMD+N to create a folder that will put inside the files.
 
 ---
 
 ## Step 16 – Single Folder Output
 ![Step 15](./15-one-folder.png)
 
-All data is now organized into a single folder.
+All data is now organized into a single folder 🎉.
 
 ---
 
@@ -121,9 +121,3 @@ All data is now organized into a single folder.
 
 Final backup folder structure for reference.
 
----
-
-## Notes
-- Screenshots are ordered numerically to match the flow.
-- This README is meant to be viewed directly on GitHub.
-- Feel free to reuse this structure for other step-by-step tutorials.
