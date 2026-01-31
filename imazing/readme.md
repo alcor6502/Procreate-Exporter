@@ -61,7 +61,7 @@ Choose the target file system.
 ---
 
 ## Step 09 – Application Export (Procreate)
-![Step 08](./08-application-export-procreate.png)
+![Step 08](./08-application-support-procreate.png)
 
 Export application-specific data (example shown: Procreate).
 
