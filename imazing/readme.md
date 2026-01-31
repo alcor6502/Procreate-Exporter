@@ -119,13 +119,16 @@ Select all relevant files or folders -> CTRL+CMD+N to create a folder that will 
 
 ## Step 16 – Single Folder Output
 All data is now organized into a single folder 🎉.
+Highly suggest to [Download Prospect](https://jaromvogel.com/prospect/Prospect_v1_2_1.zip) that way you could preview your Procreate files.
 
 ![Step 15](./15-one-folder.png)
 
 ---
 
 ## Backup Folder Structure
+Final backup folder structure for reference.
+
 ![Backup Folder](./backup-folder.png)
 
-Final backup folder structure for reference.
+
 
