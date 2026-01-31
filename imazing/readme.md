@@ -5,114 +5,122 @@ This proccess will show you step-by-step how to backup your Procreate files usin
 ---
 
 ## Step 01 – Backup Now
-![Step 00](./00-backup-now.png)
-
 Start the backup process by choosing **Backup Now**.
+
+![Step 00](./00-backup-now.png)
 
 ---
 
 ## Step 02 – Select Backup
-![Step 01](./01-backup-select.png)
-
 Choose what you want to back up (files, folders, or application data).
+
+![Step 01](./01-backup-select.png)
 
 ---
 
 ## Step 03 – Start Backup
-![Step 02](./02-backup-start.png)
-
 Confirm your selection and start the backup process.
+
+![Step 02](./02-backup-start.png)
 
 ---
 
 ## Step 04 – Backing Up
-![Step 03](./03-backing-up.png)
-
 The system is actively backing up your data.
+
+![Step 03](./03-backing-up.png)
 
 ---
 
 ## Step 05 – Verify Backup
-![Step 04](./04-backup-verify.png)
-
 Verify that the backup completed successfully and data integrity is intact.
+
+![Step 04](./04-backup-verify.png)
 
 ---
 
 ## Step 06 – Backup Complete
-![Step 05](./05-complete.png)
-
 Backup finished successfully.
+
+![Step 05](./05-complete.png)
 
 ---
 
 ## Step 07 – Choose Location
-![Step 06](./06-location.png)
-
 Select where the backup is stored or where it should be restored from.
+
+![Step 06](./06-location.png)
 
 ---
 
 ## Step 08 – Select File System
-![Step 07](./07-select-file-system.png)
-
 Choose the target file system.
+
+![Step 07](./07-select-file-system.png)
 
 ---
 
 ## Step 09 – Application Export (Procreate)
-![Step 08](./08-application-support-procreate.png)
-
 Export application-specific data (example shown: Procreate).
+
+![Step 08](./08-application-support-procreate.png)
 
 ---
 
 ## Step 10 – Copy to Mac
-![Step 09](./09-copy-to-mac.png)
-
 Copy the backup files to your Mac.
+
+![Step 09](./09-copy-to-mac.png)
 
 ---
 
 ## Step 11 – Copying Files
-![Step 10](./10-copying.png)
-
 Files are being transferred.
+
+![Step 10](./10-copying.png)
 
 ---
 
 ## Step 12 – Extraction Complete
-![Step 11](./11-extracted-complete.png)
-
 All files have been successfully extracted.
+
+![Step 11](./11-extracted-complete.png)
 
 ---
 
 ## Step 13 – Using Python Script
 ![Step 12](./12-using-python-script.png)
 
-Run a Python script to process or organize the extracted files.
+Run a Python script to organize the extracted files.
+
+A. Copy the python script into the same Procreate folder.
+B. Open Terminal: cd your_procreate_folder (drag your folder) -> Enter
+C. In terminal:
+
+```bash
+python3 export_procreate.py /path/to/Application\ Support/
+```
 
 ---
 
 ## Step 14 – Python Script Done
-![Step 13](./13-py-done.png)
-
 Python script finished running successfully.
+
+![Step 13](./13-py-done.png)
 
 ---
 
 ## Step 15 – Select All
-![Step 14](./14-select-all.png)
-
 Select all relevant files or folders -> CTRL+CMD+N to create a folder that will put inside the files.
+
+![Step 14](./14-select-all.png)
 
 ---
 
 ## Step 16 – Single Folder Output
-![Step 15](./15-one-folder.png)
-
 All data is now organized into a single folder 🎉.
+
+![Step 15](./15-one-folder.png)
 
 ---
 
